@@ -13,7 +13,6 @@ ex) 4월 20일 수요일입니다. 날씨가 춥군요 오늘 날씨는
 
 패키지: geolocator 8.2.0, google_fonts 2.3.1 timer_builder 2.0.0
 
-
        http 0.13.4, intl 0.17.0 flutter_spinkit 5.1.0
        
 ## 앱 화면 
