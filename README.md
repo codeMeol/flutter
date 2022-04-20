@@ -15,3 +15,9 @@ ex) 4월 20일 수요일입니다. 날씨가 춥군요 오늘 날씨는
        http 0.13.4, intl 0.17.0 flutter_spinkit 5.1.0
        
 ## 앱 화면 
+![weather_screen](https://user-images.githubusercontent.com/99194753/164208583-232b4eca-2ff9-4edc-8012-b3eef218260c.jpg)
+
+
+![loading](https://user-images.githubusercontent.com/99194753/164208607-8a19a475-4d0d-4977-aaa8-803460622dbf.jpg)
+
+
