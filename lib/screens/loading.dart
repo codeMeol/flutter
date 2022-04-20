@@ -2,9 +2,13 @@ import 'package:newsapp/data/network.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/data/my_location.dart';
 import 'package:newsapp/screens/weather_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apikey = '459370d17acc83d72365f85824d1a483';
 
+/*
+화면 로딩창
+ */
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
 
@@ -50,26 +54,13 @@ class _LoadingState extends State<Loading> {
     }));
   }
 
-  // void fetchData() async{
-  //
-  //
-
-  //
-  //
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            getLocation();
-          },
-          child: Text(
-            "get my location",
-            style: TextStyle(color: Colors.white),
-          ),
+        child: SpinKitDoubleBounce(
+          color: Colors.black,
+          size: 80.0,
         ),
       ),
     );

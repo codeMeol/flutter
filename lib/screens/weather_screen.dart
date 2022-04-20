@@ -5,23 +5,30 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:newsapp/model/model.dart';
+/*
+받아온 데이터로 화면을 구성해주는 페이지입니다.
+
+ */
+
 class Weather_screen extends StatefulWidget {
-  Weather_screen({this.parseWeatherData,this.parseAirPollution});
+  Weather_screen({this.parseWeatherData, this.parseAirPollution});
 
   final dynamic parseWeatherData;
   final dynamic parseAirPollution;
+
   @override
   _Weather_screenState createState() => _Weather_screenState();
 }
 
 class _Weather_screenState extends State<Weather_screen> {
   Model model = Model();
-  late String cityName;
-  late int temp;
-  late int weatherId;
-  late Widget icon;
+  //
+  late String cityName; //지역이름
+  late int temp; //온도 값 `C
+  late int weatherId; //JSON데이터 CONDITION 값
+  late Widget icon; //날씨상태에 따른 아이콘
   late String des;
-  late Widget airIcon,airState;
+  late Widget airIcon, airState;
   late double dust1, dust2; //미세먼지 초미세먼지
   late int index;
   var date = DateTime.now();
@@ -30,27 +37,25 @@ class _Weather_screenState extends State<Weather_screen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    updateData(widget.parseWeatherData,widget.parseAirPollution);
+    updateData(widget.parseWeatherData, widget.parseAirPollution);
   }
 
-  void updateData(dynamic weatherData,dynamic airData) {
-    print(airData["list"][0]["main"]);
+  void updateData(dynamic weatherData, dynamic airData) {
 
-    double temp2 = weatherData['main']['temp'];
+    double temp_parsed = weatherData['main']['temp'];
     index = airData["list"][0]["main"]["aqi"];
     cityName = weatherData['name'];
-    weatherId= weatherData["weather"][0]["id"];
-    temp = temp2.toInt();
+    weatherId = weatherData["weather"][0]["id"];
+    temp=temp_parsed.toInt();
     icon = model.getWeatherIcon(weatherId)!;
     des = weatherData["weather"][0]["description"];
-    airIcon= model.getAirIcon(index)!;
-    airState= model.getAirCondition(index)!;
+    airIcon = model.getAirIcon(index)!;
+    airState = model.getAirCondition(index)!;
     dust1 = airData["list"][0]["components"]["pm10"];
     dust2 = airData["list"][0]["components"]["pm2_5"];
 
     print(temp);
     print(cityName);
-
   }
 
   String getSystemTime() {
@@ -120,7 +125,6 @@ class _Weather_screenState extends State<Weather_screen> {
                               TimerBuilder.periodic(
                                 (Duration(minutes: 1)),
                                 builder: (context) {
-                                  print(getSystemTime());
                                   return Text(
                                     '${getSystemTime()}',
                                     style: GoogleFonts.lato(
@@ -153,7 +157,9 @@ class _Weather_screenState extends State<Weather_screen> {
                       Row(
                         children: [
                           icon,
-                          SizedBox(width: 10.0,),
+                          SizedBox(
+                            width: 10.0,
+                          ),
                           Text(
                             "$des",
                             style: GoogleFonts.lato(
@@ -192,7 +198,7 @@ class _Weather_screenState extends State<Weather_screen> {
                             SizedBox(
                               height: 10.0,
                             ),
-                           airState
+                            airState
                           ],
                         ),
                         Column(

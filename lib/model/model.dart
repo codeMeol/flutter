@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 class Model {
+  //날씨 데이터에 따른 아이콘 반환
   Widget? getWeatherIcon(int condition) {
     if (condition < 300) {
       return SvgPicture.asset(
@@ -32,7 +34,7 @@ class Model {
       );
     }
   }
-
+  //공기질에 따른 아이콘 반환 비동기식이고 null-safety 때문에 widget에 questionmark 넣어줬음
   Widget? getAirIcon(dynamic index) {
     if (index == 1) {
       return Image.asset(
@@ -70,7 +72,7 @@ class Model {
       );
     }
   }
-
+  //공기 질에 따른 날씨 데이터값 text위젯으로 반환
   Widget? getAirCondition(dynamic index) {
     if (index == 1) {
       return Text(
