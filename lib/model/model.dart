@@ -120,4 +120,25 @@ class Model {
       );
     }
   }
+  String? getComment(int temp){
+
+    if(temp <= 4){
+    return "춥습니다.";
+    }
+    else if(temp <= 8){
+      return "조금 춥습니다.";
+    }
+    else if(temp <= 19){
+      return "선선합니다.";
+    }
+    else if(temp <= 22){
+      return "덥지 않습니다.";
+    }
+    else if(temp <= 28){
+      return "약간 덥습니다.";
+    }
+    else if(temp >=28 ){
+      return "많이 덥습니다.";
+    }
+  }
 }

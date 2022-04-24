@@ -22,7 +22,6 @@ class Weather_screen extends StatefulWidget {
 
 class _Weather_screenState extends State<Weather_screen> {
   Model model = Model();
-  //
   late String cityName; //지역이름
   late int temp; //온도 값 `C
   late int weatherId; //JSON데이터 CONDITION 값
@@ -32,6 +31,7 @@ class _Weather_screenState extends State<Weather_screen> {
   late double dust1, dust2; //미세먼지 초미세먼지
   late int index;
   var date = DateTime.now();
+  late String comment;
 
   @override
   void initState() {
@@ -53,14 +53,16 @@ class _Weather_screenState extends State<Weather_screen> {
     airState = model.getAirCondition(index)!;
     dust1 = airData["list"][0]["components"]["pm10"];
     dust2 = airData["list"][0]["components"]["pm2_5"];
-
+    String? tempComent = model.getComment(temp);
+    comment= "${DateFormat('MM월 dd일 ').format(date)}입니다. "+"  ${tempComent}"
+    +" 미세먼지는 ${dust1}이며 초미세먼지는 ${dust2}입니다."; //몇월 며칠 입니다 춥습니다. 미세먼지는
+    print("Coment is = "+comment);
     print(temp);
     print(cityName);
   }
 
   String getSystemTime() {
-    var now = DateTime.now();
-    return DateFormat("h:mm a").format(now);
+    return DateFormat("h:mm a").format(date);
   }
 
   @override
@@ -151,6 +153,13 @@ class _Weather_screenState extends State<Weather_screen> {
                                 fontSize: 85.0,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white),
+                          ),
+                          Text(
+                            "$comment",
+                            style: GoogleFonts.lato(
+                              fontSize: 12.0,
+                              color:Colors.white
+                            ),
                           )
                         ],
                       ),
